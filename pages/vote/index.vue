@@ -35,6 +35,7 @@ const handleSubmit = async () => {
   await saveVote(selectedValues);
   isSubmitting.value = false;
   await navigateTo('/complete')
+  window.history.replaceState({}, '', window.location.pathname);
 };
 
 async function saveVote(selectedValues) {
@@ -78,7 +79,7 @@ async function saveVote(selectedValues) {
       </div>
 
       <div class="pt-5">
-        <div v-if="isSubmitting" class="text-green-500">
+        <div v-if="isSubmitting" class="text-green-600">
           <svg class="animate-spin h-11 w-11" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor"

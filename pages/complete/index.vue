@@ -4,13 +4,24 @@ import {defineComponent} from "vue";
 import SacrraCard from "~/components/shared/SacrraCard.vue";
 import SacrraHeader from "~/components/shared/SacrraHeader.vue";
 import {LottieAnimation} from "lottie-web-vue";
-import DoneJson from "../../assets/closed.json";
 import DoneAnimation from "~/components/shared/DoneAnimation.vue";
 
 export default defineComponent({
-  methods: {DoneJson},
   components: {DoneAnimation, LottieAnimation, SacrraHeader, SacrraCard}
 })
+
+try{
+  const voteStore = useVoteStore();
+  voteStore.election={};
+  voteStore.voter= {
+    email: '',
+    companyName: '',
+    fullName: ''
+  };
+  voteStore.choices= [];
+}catch{}
+
+
 </script>
 
 <template>
