@@ -6,6 +6,9 @@ export default defineNuxtConfig({
         'nuxt-vuefire',
         '@pinia/nuxt',
     ],
+    tailwindcss: {
+        configPath: 'tailwind.config.js'
+    },
     vuefire: {
         auth: {
             enabled: true,

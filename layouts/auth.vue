@@ -32,7 +32,7 @@ function siteSignOut() {
     </div>
   </nav>
 
-  <div class="container mx-auto px-6 py-8">
+  <div class="container mx-auto py-10">
     <slot/>
   </div>
 </template>

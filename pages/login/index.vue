@@ -18,7 +18,7 @@ const login = async () => {
   try {
     loading.value = true;
     const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
-    await navigateTo('/results')
+    await navigateTo('/dashboard')
   } catch (err) {
     loading.value = false;
     console.error("Error logging in:", err);
