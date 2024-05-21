@@ -23,4 +23,10 @@ export default defineNuxtConfig({
             appId: "1:765471833616:web:ee2d6c4a932155f0a55495"
         },
     },
+    nitro: {
+        firebase: {
+            gen: 2
+        }
+    }
+
 })
