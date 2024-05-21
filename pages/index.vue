@@ -5,7 +5,6 @@ import SacrraHeader from "~/components/shared/SacrraHeader.vue";
 import VotingClosed from "~/components/VotingClosed.vue";
 import {useVoteStore} from "~/stores/vote.ts";
 
-
 const db = getFirestore();
 
 const voteStore = useVoteStore();
