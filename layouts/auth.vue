@@ -9,9 +9,9 @@ if (!user.value) {
   await navigateTo('/login');
 }
 
-async function siteSignOut() {
-  await signOut;
-  await navigateTo('/login');
+function siteSignOut() {
+  signOut(auth);
+  navigateTo('/login');
 }
 
 </script>
