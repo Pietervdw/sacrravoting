@@ -1,27 +1,42 @@
 <script setup lang="ts">
-import {collection, getDocs, getFirestore} from "firebase/firestore";
-import SacrraCard from "~/components/shared/SacrraCard.vue";
-
-const db = getFirestore();
+import {collection, doc, getDocs, getFirestore, query, where} from "firebase/firestore";
 
 definePageMeta({
   layout: 'auth'
 })
+import SacrraCard from "~/components/shared/SacrraCard.vue";
 
-const {pending, data: elections} = await useLazyAsyncData('elections', async () => {
-  const colRef = collection(db, 'election');
-  const electionDocs = await getDocs(colRef);
+const db = getFirestore();
+const route = useRoute();
 
-  return electionDocs.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  }));
+const electionRef = doc(db, `/election/${route.params.id}`);
+
+const {pending, data: votes} = await useLazyAsyncData('votes', async () => {
+  let votes = [];
+  const q = query(
+      collection(db, 'votes'),
+      where('isProxy', '==', true),
+      where('electionId', '==', electionRef)
+  );
+
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+    // Remove if not needed, or transform non-POJOs here
+    votes.push({
+      id: doc.id,
+      ...data,
+      electionId: data.electionId.id, // Convert document reference to its string ID
+    });
+  });
+
+  return votes;
 });
-
 </script>
 
 <template>
   <sacrra-card :full-width="true" class="flex items-center content-center">
+    <h1>Proxy Votes</h1>
     <div class="overflow-x-auto w-full">
       <table class="table w-full">
         <!-- head -->
@@ -34,7 +49,7 @@ const {pending, data: elections} = await useLazyAsyncData('elections', async () 
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(item, index) in elections">
+        <tr v-for="(item, index) in votes">
 
           <td>
             <div class="flex items-center gap-3">

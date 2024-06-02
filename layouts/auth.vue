@@ -3,14 +3,14 @@ import {
   signOut,
 } from 'firebase/auth'
 
-const auth = useFirebaseAuth()
-const user = useCurrentUser();
-if (!user.value) {
-  await navigateTo('/login');
-}
+// const auth = useFirebaseAuth()
+// const user = useCurrentUser();
+// if (!user.value) {
+//   await navigateTo('/login');
+// }
 
 function siteSignOut() {
-  signOut(auth);
+  //signOut(auth);
   navigateTo('/login');
 }
 
