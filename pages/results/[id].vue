@@ -2,9 +2,9 @@
 import {getFirestore, limit, query, where} from "firebase/firestore";
 import { collection, getDocs } from 'firebase/firestore';
 
-// definePageMeta({
-//   layout: 'auth'
-// })
+definePageMeta({
+  layout: 'auth'
+})
 
 const db = getFirestore();
 

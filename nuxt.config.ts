@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    ssr: false,
     devtools: {enabled: true},
     modules: [
         '@nuxtjs/tailwindcss',
@@ -11,10 +12,11 @@ export default defineNuxtConfig({
     },
     vuefire: {
         auth: {
-            enabled: false,
-            sessionCookie: false
+            enabled: true,
+            sessionCookie: true
         },
         config: {
+            apiKey: "AIzaSyDIjHEKoHM0HqTHzpXjY0ZY1ltLmi54P3U",
             authDomain: "sacrravoting.firebaseapp.com",
             projectId: "sacrravoting",
             storageBucket: "sacrravoting.appspot.com",
